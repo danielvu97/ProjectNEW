@@ -46,7 +46,7 @@ public class furpic extends FurniturePresenter{
 				y_cursor = y-70;
 				
 				table.setLocation(x_cursor, y_cursor);
-				tables1.Coordinating(table.getName(),x,y);
+				tables1.Coordinating(table.getName(),x_cursor,y_cursor);
 				System.out.println(table.getWidth());
 				System.out.println(table.getHeight());
 				tables1.iterate();
@@ -81,17 +81,20 @@ public class furpic extends FurniturePresenter{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				/*flag = tables1.compareCoordinates(x_cursor,y_cursor,table.getHeight(),table.getWidth());
-				if(flag == false) {
-					
-				}*/
-				
+		
 				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
+				System.out.println("hej");
+				flag = tables1.compareCoordinates(x_cursor,y_cursor,table.getHeight(),table.getWidth());
+				if(flag == true) {
+					table.setLocation(200,100);
+					repaint();
+					
+				}
 				
 				
 			}
