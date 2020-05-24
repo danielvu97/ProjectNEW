@@ -123,12 +123,14 @@ public class furpic extends FurniturePresenter{
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				 x = e.getXOnScreen();
-				 y = e.getYOnScreen();
+				 y = e.getYOnScreen();				 
 				keypad.remove(chair);
 				Panel1.add(chair);
 				Panel1.add(Center);
-				chair.setLocation(x-200, y-50);
-				tables1.Coordinating(chair.getName(),x,y);
+				x_cursor = x-200;
+				y_cursor = y-70;
+				chair.setLocation(x_cursor, y_cursor);
+				tables1.Coordinating(chair.getName(),x_cursor,y_cursor);
 				tables1.iterate();
 				repaint();
 			}
@@ -144,6 +146,45 @@ public class furpic extends FurniturePresenter{
 		int i = Integer.parseInt(index1);
 		i++;
 		index1 = String.valueOf(i);
+		
+		chair.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				flag = tables1.compareCoordinates(x_cursor,y_cursor,chair.getHeight(),chair.getWidth(),chair.getName() );
+				if(flag == true) {
+					chair.setLocation(200,100);
+				}
+					repaint();
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 		// TODO Auto-generated method stub
 		
