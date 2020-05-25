@@ -17,6 +17,7 @@ public class furpic extends FurniturePresenter{
 	int y_cursor = 0;
 	Rectangle test;
 	String index1 = "0";
+	boolean deleteflag;
 	public static Coordinates tables1;
 	
 	
@@ -31,25 +32,26 @@ public class furpic extends FurniturePresenter{
 
 	@Override
 	public void Button1Pressed() {
-		JLabel table = new JLabel(new ImageIcon("TABLE.png"));
-		table.setName(index1);
-		keypad.add(table);
+		JLabel furniture = new JLabel(new ImageIcon("TABLE.png"));
+		furniture.setName(index1);
+		keypad.add(furniture);
 		
-		table.addMouseMotionListener(new MouseMotionListener() {
+		furniture.addMouseMotionListener(new MouseMotionListener() {
 
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				 x = e.getXOnScreen();
 				 y = e.getYOnScreen();
-				keypad.remove(table);
-				Panel1.add(table);
+				keypad.remove(furniture);
+				Panel1.add(furniture);
 				Panel1.add(Center);
 				x_cursor = x-157;
 				y_cursor = y-30;
 				
-				table.setLocation(x_cursor, y_cursor);
-				test = table.getBounds();
-				tables1.Coordinating(test,table.getName());
+				furniture.setLocation(x_cursor, y_cursor);
+				test = furniture.getBounds();
+				tables1.Coordinating(test,furniture.getName());
+				
 
 				repaint();
 			}
@@ -67,18 +69,22 @@ public class furpic extends FurniturePresenter{
 		index1 = String.valueOf(i);
 		
 		
-		table.addMouseListener(new MouseListener() {
+		furniture.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-		
+				
+				if(deleteflag == true) {
+					Panel1.remove(furniture);
+					repaint();
+					deleteflag = false;
+				}
 				
 			}
 
@@ -86,9 +92,10 @@ public class furpic extends FurniturePresenter{
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				try {
-				flag = tables1.compareCoordinates(test,table.getName());
+				flag = tables1.compareCoordinates(test,furniture.getName());
 				if(flag == true) {
-					table.setLocation(200,100);
+					furniture.setLocation(200,100);
+					
 					repaint();
 					
 				}
@@ -118,24 +125,24 @@ public class furpic extends FurniturePresenter{
 
 	@Override
 	public void Button2Pressed() {
-		JLabel chair = new JLabel(new ImageIcon("CHAIR.png"));
-		keypad.add(chair);
-		chair.setName(index1);
-		chair.addMouseMotionListener(new MouseMotionListener() {
+		JLabel furniture = new JLabel(new ImageIcon("CHAIR.png"));
+		keypad.add(furniture);
+		furniture.setName(index1);
+		furniture.addMouseMotionListener(new MouseMotionListener() {
 
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				 x = e.getXOnScreen();
 				 y = e.getYOnScreen();				 
-				keypad.remove(chair);
-				Panel1.add(chair);
+				keypad.remove(furniture);
+				Panel1.add(furniture);
 				Panel1.add(Center);
 				x_cursor = x-200;
 				y_cursor = y-70;
-				chair.setLocation(x_cursor, y_cursor);
+				furniture.setLocation(x_cursor, y_cursor);
 				
-				test = chair.getBounds();
-				tables1.Coordinating(test, chair.getName());
+				test = furniture.getBounds();
+				tables1.Coordinating(test, furniture.getName());
 				repaint();
 			}
 
@@ -151,7 +158,7 @@ public class furpic extends FurniturePresenter{
 		i++;
 		index1 = String.valueOf(i);
 		
-		chair.addMouseListener(new MouseListener() {
+		furniture.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -168,9 +175,9 @@ public class furpic extends FurniturePresenter{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				try {
-				flag = tables1.compareCoordinates(test,chair.getName());
+				flag = tables1.compareCoordinates(test,furniture.getName());
 				if(flag == true) {
-					chair.setLocation(200,100);
+					furniture.setLocation(200,100);
 				}
 					repaint();
 				// TODO Auto-generated method stub
@@ -234,4 +241,19 @@ public class furpic extends FurniturePresenter{
 		
 	}
 
-}
+	@Override
+	public void ButtonSave() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ButtonDelete() {
+		// TODO Auto-generated method stub
+		
+			deleteflag = true;
+	}
+		
+		
+	}
+

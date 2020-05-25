@@ -7,6 +7,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public abstract class Layout extends JFrame implements ActionListener {
@@ -24,8 +25,8 @@ public abstract class Layout extends JFrame implements ActionListener {
 	JButton b7 = new JButton("Stove");
 	JButton b8 = new JButton("Toilet");
 	
-	//JButton save = new JButton("Save");
-	//JButton edit = new JButton("Edit");
+	JButton save = new JButton("Save");
+	JButton delete = new JButton("Delete");
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == b1) {
@@ -52,12 +53,12 @@ public abstract class Layout extends JFrame implements ActionListener {
 		if (e.getSource() == b8) {
 			Button8Pressed();
 		}
-		/*if (e.getSource() == save) {
+		if (e.getSource() == save) {
 			ButtonSave();
 		}
-		if (e.getSource() == edit) {
-			ButtonEdit();
-		}*/
+		if (e.getSource() == delete) {
+			ButtonDelete();
+		}
 		}
 
 
@@ -85,8 +86,8 @@ public Layout(){
 	keypad.add(b7);
 	keypad.add(b8);
 	
-//	savepad.add(save);
-//	savepad.add(edit);
+	savepad.add(save);
+	savepad.add(delete);
 	
 	Panel1.setLayout(new BorderLayout());
 	Panel1.add(Center,BorderLayout.CENTER);
@@ -94,7 +95,7 @@ public Layout(){
 	setLayout(new BorderLayout());
 	add(Panel1, BorderLayout.CENTER);
 	add(keypad,BorderLayout.WEST);
-	//add(savepad,BorderLayout.SOUTH);
+	add(savepad,BorderLayout.SOUTH);
 	
 	keypad.setPreferredSize(new Dimension(150, 400));
 	Panel1.setPreferredSize(new Dimension(903, 500));
@@ -107,8 +108,8 @@ public Layout(){
 	b6.addActionListener(this);
 	b7.addActionListener(this);
 	b8.addActionListener(this);
-	//save.addActionListener(this);
-	//edit.addActionListener(this);
+	save.addActionListener(this);
+	delete.addActionListener(this);
 	
 }
 
@@ -120,8 +121,8 @@ public abstract void Button5Pressed();
 public abstract void Button6Pressed();
 public abstract void Button7Pressed();
 public abstract void Button8Pressed();
-//public abstract void ButtonSave();
-//public abstract void ButtonEdit();
+public abstract void ButtonSave();
+public abstract void ButtonDelete();
 
 public abstract JComponent createFurnitureComponent();
 

@@ -27,6 +27,11 @@ public class Coordinates extends furpic {
 		}
 		return false;
 	}
+	
+	/*public void deleteCoordinate(String Name) {
+		i = Integer.parseInt(Name);
+		Rectangle Temp
+	}*/
 		
 	
 }
