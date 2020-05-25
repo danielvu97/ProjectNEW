@@ -1,3 +1,4 @@
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -14,6 +15,7 @@ public class furpic extends FurniturePresenter{
 	int i = 0;
 	int x_cursor = 0;
 	int y_cursor = 0;
+	Rectangle test;
 	String index1 = "0";
 	public static Coordinates tables1;
 	
@@ -42,16 +44,12 @@ public class furpic extends FurniturePresenter{
 				keypad.remove(table);
 				Panel1.add(table);
 				Panel1.add(Center);
-				x_cursor = x-205;
-				y_cursor = y-70;
+				x_cursor = x-157;
+				y_cursor = y-30;
 				
 				table.setLocation(x_cursor, y_cursor);
-				tables1.Coordinating(table.getName(),x_cursor,y_cursor);
-				System.out.println(table.getWidth());
-				System.out.println(table.getHeight());
-				tables1.iterate();
-				
-				
+				test = table.getBounds();
+				tables1.Coordinating(test,table.getName());
 
 				repaint();
 			}
@@ -87,10 +85,15 @@ public class furpic extends FurniturePresenter{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				flag = tables1.compareCoordinates(x_cursor,y_cursor,table.getHeight(),table.getWidth(),table.getName() );
+				try {
+				flag = tables1.compareCoordinates(test,table.getName());
 				if(flag == true) {
 					table.setLocation(200,100);
 					repaint();
+					
+				}
+				}
+				catch(Exception error) {
 					
 				}
 				
@@ -130,8 +133,9 @@ public class furpic extends FurniturePresenter{
 				x_cursor = x-200;
 				y_cursor = y-70;
 				chair.setLocation(x_cursor, y_cursor);
-				tables1.Coordinating(chair.getName(),x_cursor,y_cursor);
-				tables1.iterate();
+				
+				test = chair.getBounds();
+				tables1.Coordinating(test, chair.getName());
 				repaint();
 			}
 
@@ -163,7 +167,8 @@ public class furpic extends FurniturePresenter{
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				flag = tables1.compareCoordinates(x_cursor,y_cursor,chair.getHeight(),chair.getWidth(),chair.getName() );
+				try {
+				flag = tables1.compareCoordinates(test,chair.getName());
 				if(flag == true) {
 					chair.setLocation(200,100);
 				}
@@ -171,6 +176,9 @@ public class furpic extends FurniturePresenter{
 				// TODO Auto-generated method stub
 				
 			}
+				catch(Exception error) {
+					}
+				}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
