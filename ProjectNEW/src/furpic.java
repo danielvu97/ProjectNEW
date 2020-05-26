@@ -2,6 +2,9 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -16,25 +19,38 @@ public class furpic extends FurniturePresenter{
 	int x_cursor = 0;
 	int y_cursor = 0;
 	Rectangle test;
+	static Rectangle [] saveC;
 	String index1 = "0";
 	boolean deleteflag;
 	public static Coordinates tables1;
+	static String [] save;
+	static Saver saver;
 	
 	
+		 
 	
 	public static void main(String[] args) {
 		furpic P = new furpic();
 		tables1 = new Coordinates();
+		saver = new Saver();
+		save = new String[10];
+		
+		saveC = new Rectangle[10];
+		
 		P.showImage("ROOM_CREATED.png");
 		P.setVisible(true);
 		P.pack();
-	}
+	}  
+	
+	//helo
+	
 
 	@Override
 	public void Button1Pressed() {
 		JLabel furniture = new JLabel(new ImageIcon("TABLE.png"));
 		furniture.setName(index1);
 		keypad.add(furniture);
+		
 		
 		furniture.addMouseMotionListener(new MouseMotionListener() {
 
@@ -66,6 +82,8 @@ public class furpic extends FurniturePresenter{
 		});
 		validate();
 		i = Integer.parseInt(index1);
+		save[i] = "TABLE";
+		System.out.println(i);
 		i++;
 		index1 = String.valueOf(i);
 		
@@ -160,7 +178,9 @@ public class furpic extends FurniturePresenter{
 			
 		});
 		validate();
-		int i = Integer.parseInt(index1);
+		i = Integer.parseInt(index1);
+		System.out.println(i);
+		save[i] = "CHAIR";
 		i++;
 		index1 = String.valueOf(i);
 		
@@ -247,17 +267,30 @@ public class furpic extends FurniturePresenter{
 		
 	}
 
+	@SuppressWarnings("resource")
 	@Override
-	public void ButtonSave() {
-		//testar
+	public void ButtonSave() throws IOException {
 		// TODO Auto-generated method stub
+		BufferedWriter outputWriter = null;
 		
+	    outputWriter = new BufferedWriter(new FileWriter("Room_Saved"));
+	    System.out.print(i);
+	    for (int x = 0; x <i; x++) {
+	        outputWriter.write(save[x]);
+	        outputWriter.newLine();
+	    	// System.out.print(save[x]);
+	      }
+	    
+	    outputWriter.flush();
+	    outputWriter.close();
 	}
 
 	@Override
 	public void ButtonDelete() {
 		// TODO Auto-generated method stub
 			deleteflag = true;
+			
+			
 	}
 		
 		

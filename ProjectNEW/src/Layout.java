@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -54,7 +55,12 @@ public abstract class Layout extends JFrame implements ActionListener {
 			Button8Pressed();
 		}
 		if (e.getSource() == save) {
-			ButtonSave();
+			try {
+				ButtonSave();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		if (e.getSource() == delete) {
 			ButtonDelete();
@@ -121,7 +127,7 @@ public abstract void Button5Pressed();
 public abstract void Button6Pressed();
 public abstract void Button7Pressed();
 public abstract void Button8Pressed();
-public abstract void ButtonSave();
+public abstract void ButtonSave() throws IOException;
 public abstract void ButtonDelete();
 
 public abstract JComponent createFurnitureComponent();
