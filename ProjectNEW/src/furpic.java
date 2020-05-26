@@ -292,7 +292,7 @@ public class furpic extends FurniturePresenter{
 			
 			
 	}
-		
+		//fafef
 		
 	}
 
