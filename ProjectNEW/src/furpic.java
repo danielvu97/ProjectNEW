@@ -249,6 +249,7 @@ public class furpic extends FurniturePresenter{
 
 	@Override
 	public void ButtonSave() {
+		//testar
 		// TODO Auto-generated method stub
 		
 	}
