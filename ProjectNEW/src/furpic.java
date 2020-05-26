@@ -32,7 +32,7 @@ public class furpic extends FurniturePresenter{
 	String str;
 	static Saver saver;
 	Scanner read;
-	JLabel furniture1;
+	
 		 
 	
 	public static void main(String[] args) {
@@ -315,23 +315,23 @@ public class furpic extends FurniturePresenter{
 		
 		while(read.hasNextLine()) {
 		str = read.nextLine();
-		furniture1 = new JLabel(new ImageIcon( str + ".png"));
-		furniture1.setName(index1);
+		JLabel furniture = new JLabel(new ImageIcon( str + ".png"));
+		furniture.setName(index1);
 		
-		Panel1.add(furniture1);
+		Panel1.add(furniture);
 		Panel1.add(Center);
-		test = furniture1.getBounds();
+		test = furniture.getBounds();
 		System.out.println(test.getWidth());
 		System.out.println(test.getHeight());
 		int x_save = Integer.parseInt(read.nextLine());
 		int y_save = Integer.parseInt(read.nextLine());
 		validate();
 		
-		furniture1.setBounds(x_save, y_save,furniture1.getWidth(),furniture1.getHeight()); 
+		furniture.setBounds(x_save, y_save,furniture.getWidth(),furniture.getHeight()); 
 		repaint();
 		
-		test = furniture1.getBounds();
-		tables1.Coordinating(test, furniture1.getName());
+		test = furniture.getBounds();
+		tables1.Coordinating(test, furniture.getName());
 		
 		i = Integer.parseInt(index1);
 		i++;
