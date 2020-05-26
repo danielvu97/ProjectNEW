@@ -4,7 +4,6 @@ import java.awt.geom.Area;
 public class Coordinates extends furpic {
 	
 	Rectangle [] save = new Rectangle[10];
-	Rectangle [] temp = new Rectangle[10];
 	
 	
 	public Coordinates() {
