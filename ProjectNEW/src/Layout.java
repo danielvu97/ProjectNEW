@@ -28,6 +28,7 @@ public abstract class Layout extends JFrame implements ActionListener {
 	
 	JButton save = new JButton("Save");
 	JButton delete = new JButton("Delete");
+	JButton load = new JButton("Load");
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == b1) {
@@ -65,6 +66,14 @@ public abstract class Layout extends JFrame implements ActionListener {
 		if (e.getSource() == delete) {
 			ButtonDelete();
 		}
+		if (e.getSource() == load) {
+			try {
+				ButtonLoad();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 		}
 
 
@@ -94,6 +103,7 @@ public Layout(){
 	
 	savepad.add(save);
 	savepad.add(delete);
+	savepad.add(load);
 	
 	Panel1.setLayout(new BorderLayout());
 	Panel1.add(Center,BorderLayout.CENTER);
@@ -116,6 +126,7 @@ public Layout(){
 	b8.addActionListener(this);
 	save.addActionListener(this);
 	delete.addActionListener(this);
+	load.addActionListener(this);
 	
 }
 
@@ -129,6 +140,7 @@ public abstract void Button7Pressed();
 public abstract void Button8Pressed();
 public abstract void ButtonSave() throws IOException;
 public abstract void ButtonDelete();
+public abstract void ButtonLoad() throws IOException;
 
 public abstract JComponent createFurnitureComponent();
 

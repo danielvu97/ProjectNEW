@@ -2,9 +2,14 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -24,9 +29,10 @@ public class furpic extends FurniturePresenter{
 	boolean deleteflag;
 	public static Coordinates tables1;
 	static String [] save;
+	String str;
 	static Saver saver;
-	
-	
+	Scanner read;
+	JLabel furniture1;
 		 
 	
 	public static void main(String[] args) {
@@ -272,13 +278,20 @@ public class furpic extends FurniturePresenter{
 	public void ButtonSave() throws IOException {
 		// TODO Auto-generated method stub
 		BufferedWriter outputWriter = null;
+		saveC = tables1.coordinateValues();
 		
-	    outputWriter = new BufferedWriter(new FileWriter("Room_Saved"));
+		outputWriter = new BufferedWriter(new FileWriter("Room_Saved.txt"));
 	    System.out.print(i);
 	    for (int x = 0; x <i; x++) {
+	    	if(saveC[x] != null) {
 	        outputWriter.write(save[x]);
 	        outputWriter.newLine();
-	    	// System.out.print(save[x]);
+	        outputWriter.write(Integer.toString(saveC[x].x));
+	        outputWriter.newLine();
+	        outputWriter.write(Integer.toString(saveC[x].y));
+	        outputWriter.newLine();
+	        
+	    	}
 	      }
 	    
 	    outputWriter.flush();
@@ -292,7 +305,57 @@ public class furpic extends FurniturePresenter{
 			
 			
 	}
-		//fafef
+
+	@Override
+	public void ButtonLoad() throws IOException {
+		// TODO Auto-generated method stub
+		
+		File text = new File("Room_Saved.txt"); 
+		read =  new Scanner(text);
+		
+		while(read.hasNextLine()) {
+		str = read.nextLine();
+		furniture1 = new JLabel(new ImageIcon( str + ".png"));
+		furniture1.setName(index1);
+		
+		Panel1.add(furniture1);
+		Panel1.add(Center);
+		test = furniture1.getBounds();
+		System.out.println(test.getWidth());
+		System.out.println(test.getHeight());
+		int x_save = Integer.parseInt(read.nextLine());
+		int y_save = Integer.parseInt(read.nextLine());
+		validate();
+		
+		furniture1.setBounds(x_save, y_save,furniture1.getWidth(),furniture1.getHeight()); 
+		repaint();
+		
+		test = furniture1.getBounds();
+		tables1.Coordinating(test, furniture1.getName());
+		
+		i = Integer.parseInt(index1);
+		i++;
+		index1 = String.valueOf(i);
+		
+		}
+		
+		addMouseMotionListener(new MouseMotionListener() {
+			
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+
+	}
 		
 	}
 
