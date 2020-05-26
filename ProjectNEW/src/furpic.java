@@ -51,6 +51,7 @@ public class furpic extends FurniturePresenter{
 				furniture.setLocation(x_cursor, y_cursor);
 				test = furniture.getBounds();
 				tables1.Coordinating(test,furniture.getName());
+				System.out.println("X " + x_cursor + "		Y " + y_cursor);
 				
 
 				repaint();
@@ -81,7 +82,12 @@ public class furpic extends FurniturePresenter{
 				// TODO Auto-generated method stub
 				
 				if(deleteflag == true) {
+					
+					tables1.deleteCoordinate(furniture.getName());
 					Panel1.remove(furniture);
+					i = Integer.parseInt(index1);
+					i--;
+					index1 = String.valueOf(i);
 					repaint();
 					deleteflag = false;
 				}

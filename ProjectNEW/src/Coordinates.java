@@ -1,8 +1,10 @@
 import java.awt.Rectangle;
+import java.awt.geom.Area;
 
 public class Coordinates extends furpic {
 	
 	Rectangle [] save = new Rectangle[10];
+	Rectangle [] temp = new Rectangle[10];
 	
 	
 	public Coordinates() {
@@ -18,6 +20,10 @@ public class Coordinates extends furpic {
 	
 	public boolean compareCoordinates(Rectangle B, String Namn) {
 		i = Integer.parseInt(Namn);
+		
+		if(B.contains(398, 0, 75, 50)) {
+			return true;
+		}
 		for(int j=0; j<10; j++) {
 			if(i != j ) {
 				if(save[j].intersects(B)) {
@@ -28,10 +34,11 @@ public class Coordinates extends furpic {
 		return false;
 	}
 	
-	/*public void deleteCoordinate(String Name) {
+	public void deleteCoordinate(String Name) {
 		i = Integer.parseInt(Name);
-		Rectangle Temp
-	}*/
-		
+		save[i] = null;
+	}
 	
-}
+	
+		
+	}
