@@ -21,9 +21,9 @@ public class Coordinates extends furpic {
 		obstacle[6].setBounds(670, 0, 109, 13); //window 2
 		obstacle[7].setBounds(588, 297, 5, 203 ); //bathroom left
 		obstacle[8].setBounds(588, 297, 200, 8 ); //bathroom right
-		obstacle[9].setBounds(442, 246, 50, 40); //Bottom House wall
-		//obstacle[10].setBounds(293, 494, 500, 5); //Bottom House wall
-		//obstacle[11].setBounds(293, 494, 500, 5); //Bottom House wall
+		obstacle[9].setBounds(442, 246, 50, 45); //Bottom House wall
+		obstacle[10].setBounds(539, 356, 50, 45); //Bottom House wall
+		obstacle[11].setBounds(515, 444, 50, 45); //Bottom House wall
 	}
 	
 	public void Coordinating(Rectangle A, String Name) {
