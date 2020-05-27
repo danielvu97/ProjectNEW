@@ -51,18 +51,4 @@ public class ShoppingList {
 			temp = temp.next;
 		}
 	}
-	
-public static void main(String[]args) {
-		
-		ShoppingList list = new ShoppingList();
-		
-		list.add("Table");
-		list.add("Chair");
-		list.add("Couch");
-		
-		list.check("Table");
-		list.check("Table");
-		list.delete("Table");
-		System.out.println(list.display("Table"));
-}
 }
