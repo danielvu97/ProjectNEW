@@ -125,7 +125,7 @@ public Layout(){
     shoppinglist.add(Box.createRigidArea(new Dimension(0,30)));
     shoppinglist.add(text1);
     shoppinglist.setLayout(new BoxLayout(shoppinglist, BoxLayout.Y_AXIS));
-    shoppinglist.setBackground(Color.WHITE);
+    shoppinglist.setBackground(Color.LIGHT_GRAY);
     add(shoppinglist,BorderLayout.EAST);
 	
 	keypad.setPreferredSize(new Dimension(150, 400));

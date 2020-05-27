@@ -69,6 +69,8 @@ public class furpic extends FurniturePresenter{
 				Panel1.add(Center);
 				x_cursor = x-157;
 				y_cursor = y-30;
+				System.out.println(x_cursor + "Xcordinat");
+				System.out.println(y_cursor + "Ycordinat");
 				
 				furniture.setLocation(x_cursor, y_cursor);
 				test = furniture.getBounds();

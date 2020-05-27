@@ -4,12 +4,12 @@ import java.awt.geom.Area;
 public class Coordinates extends furpic {
 	
 	Rectangle [] save = new Rectangle[10];
-	Rectangle [] temp = new Rectangle[10];
-	Rectangle [] walls = new Rectangle[10];
-	
+	//Rectangle [] walls = new Rectangle[10];
+	Rectangle wall = new Rectangle(); 
 	
 	public Coordinates() {
 		i = 0;
+		wall.setBounds(404, 76, 15, 100);
 	}
 	
 	public void Coordinating(Rectangle A, String Name) {
@@ -21,6 +21,10 @@ public class Coordinates extends furpic {
 	
 	public boolean compareCoordinates(Rectangle B, String Namn) {
 		i = Integer.parseInt(Namn);
+		
+		if(wall.intersects(B)) {
+			return true;
+		}
 		
 		for(int j=0; j<10; j++) {
 			if(i != j && save[j] != null) {
