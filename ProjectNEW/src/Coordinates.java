@@ -11,11 +11,19 @@ public class Coordinates extends furpic {
 		for(int l = 0; l<12; l++) {
 			obstacle[l] = new Rectangle();
 		}
-		obstacle[0].setBounds(293, 76, 18, 104); //window
-		obstacle[1].setBounds(293, 0, 5, 495); //left House wall
-		obstacle[2].setBounds(293, 0, 500, 5); //Upper House wall
-		obstacle[3].setBounds(785, 0, 5, 495); //Right House wall
-		obstacle[4].setBounds(293, 494, 500, 5); //Bottom House wall
+		
+		obstacle[0].setBounds(293, 0, 5, 495); //left House wall
+		obstacle[1].setBounds(293, 0, 500, 5); //Upper House wall
+		obstacle[2].setBounds(785, 0, 5, 495); //Right House wall
+		obstacle[3].setBounds(293, 494, 500, 5); //Bottom House wall
+		obstacle[4].setBounds(489, 0, 9, 495); //middle House wall
+		obstacle[5].setBounds(293, 76, 18, 104); //window1
+		obstacle[6].setBounds(670, 0, 109, 13); //window 2
+		obstacle[7].setBounds(588, 297, 5, 203 ); //bathroom left
+		obstacle[8].setBounds(588, 297, 200, 8 ); //bathroom right
+		obstacle[9].setBounds(442, 246, 50, 40); //Bottom House wall
+		//obstacle[10].setBounds(293, 494, 500, 5); //Bottom House wall
+		//obstacle[11].setBounds(293, 494, 500, 5); //Bottom House wall
 	}
 	
 	public void Coordinating(Rectangle A, String Name) {

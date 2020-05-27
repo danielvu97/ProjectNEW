@@ -33,7 +33,6 @@ public class furpic extends FurniturePresenter{
 	static Saver saver;
 	Scanner read;
 	boolean loadflag = true;
-
 		 
 	
 	public static void main(String[] args) {
@@ -281,12 +280,12 @@ public class furpic extends FurniturePresenter{
 
 	@SuppressWarnings("resource")
 	@Override
-	public void ButtonSave() throws IOException {
+	public void ButtonSave(String s) throws IOException {
 		// TODO Auto-generated method stub
 		BufferedWriter outputWriter = null;
 		saveC = tables1.coordinateValues();
 		
-		outputWriter = new BufferedWriter(new FileWriter("Room_Saved.txt"));
+		outputWriter = new BufferedWriter(new FileWriter(s));
 	    System.out.print(i);
 	    for (int x = 0; x <i; x++) {
 	    	if(saveC[x] != null) {
@@ -317,11 +316,11 @@ public class furpic extends FurniturePresenter{
 	}
 
 	@Override
-	public void ButtonLoad() throws IOException {
+	public void ButtonLoad(String s) throws IOException {
 		// TODO Auto-generated method stub
 		if(loadflag == true) {
 		saveC = tables1.coordinateValues();
-		File text = new File("Room_Saved.txt"); 
+		File text = new File(s); 
 		read =  new Scanner(text);
 		while(read.hasNextLine()) {
 		str = read.nextLine();

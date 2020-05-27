@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public abstract class Layout extends JFrame implements ActionListener {
@@ -60,8 +61,9 @@ public abstract class Layout extends JFrame implements ActionListener {
 			Button8Pressed();
 		}
 		if (e.getSource() == save) {
+			String s = JOptionPane.showInputDialog(null, "Enter the fileName: ");
 			try {
-				ButtonSave();
+				ButtonSave(s);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -71,8 +73,9 @@ public abstract class Layout extends JFrame implements ActionListener {
 			ButtonDelete();
 		}
 		if (e.getSource() == load) {
+			String s = JOptionPane.showInputDialog(null, "Enter the fileName: ");
 			try {
-				ButtonLoad();
+				ButtonLoad(s);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -154,9 +157,9 @@ public abstract void Button5Pressed();
 public abstract void Button6Pressed();
 public abstract void Button7Pressed();
 public abstract void Button8Pressed();
-public abstract void ButtonSave() throws IOException;
+public abstract void ButtonSave(String s) throws IOException;
 public abstract void ButtonDelete();
-public abstract void ButtonLoad() throws IOException;
+public abstract void ButtonLoad(String s) throws IOException;
 
 public abstract JComponent createFurnitureComponent();
 
