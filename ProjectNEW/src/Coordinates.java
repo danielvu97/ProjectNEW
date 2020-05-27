@@ -25,7 +25,7 @@ public class Coordinates extends furpic {
 			return true;
 		}
 		for(int j=0; j<10; j++) {
-			if(i != j ) {
+			if(i != j && save[j] != null) {
 				if(save[j].intersects(B)) {
 				return true;
 				}

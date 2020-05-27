@@ -1,9 +1,11 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -29,6 +31,8 @@ public abstract class Layout extends JFrame implements ActionListener {
 	JButton save = new JButton("Save");
 	JButton delete = new JButton("Delete");
 	JButton load = new JButton("Load");
+	
+	JPanel shoppinglist = new JPanel();
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == b1) {
@@ -113,6 +117,17 @@ public Layout(){
 	add(keypad,BorderLayout.WEST);
 	add(savepad,BorderLayout.SOUTH);
 	
+	JLabel text = new JLabel();
+    JLabel text1 = new JLabel();
+    text.setText("----------SHOPPING LIST---------");
+    text1.setText("Bed");
+    shoppinglist.add(text);
+    shoppinglist.add(Box.createRigidArea(new Dimension(0,30)));
+    shoppinglist.add(text1);
+    shoppinglist.setLayout(new BoxLayout(shoppinglist, BoxLayout.Y_AXIS));
+    shoppinglist.setBackground(Color.WHITE);
+    add(shoppinglist,BorderLayout.EAST);
+	
 	keypad.setPreferredSize(new Dimension(150, 400));
 	Panel1.setPreferredSize(new Dimension(903, 500));
 	
@@ -127,6 +142,7 @@ public Layout(){
 	save.addActionListener(this);
 	delete.addActionListener(this);
 	load.addActionListener(this);
+	
 	
 }
 

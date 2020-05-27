@@ -32,7 +32,8 @@ public class furpic extends FurniturePresenter{
 	String str;
 	static Saver saver;
 	Scanner read;
-	
+	boolean loadflag = true;
+
 		 
 	
 	public static void main(String[] args) {
@@ -48,7 +49,6 @@ public class furpic extends FurniturePresenter{
 		P.pack();
 	}  
 	
-	//helo
 	
 
 	@Override
@@ -286,6 +286,10 @@ public class furpic extends FurniturePresenter{
 	    	if(saveC[x] != null) {
 	        outputWriter.write(save[x]);
 	        outputWriter.newLine();
+	        outputWriter.write(Integer.toString(saveC[x].width));
+	        outputWriter.newLine();
+	        outputWriter.write(Integer.toString(saveC[x].height));
+	        outputWriter.newLine();
 	        outputWriter.write(Integer.toString(saveC[x].x));
 	        outputWriter.newLine();
 	        outputWriter.write(Integer.toString(saveC[x].y));
@@ -309,10 +313,10 @@ public class furpic extends FurniturePresenter{
 	@Override
 	public void ButtonLoad() throws IOException {
 		// TODO Auto-generated method stub
-		
+		if(loadflag == true) {
+		saveC = tables1.coordinateValues();
 		File text = new File("Room_Saved.txt"); 
 		read =  new Scanner(text);
-		
 		while(read.hasNextLine()) {
 		str = read.nextLine();
 		JLabel furniture = new JLabel(new ImageIcon( str + ".png"));
@@ -320,14 +324,15 @@ public class furpic extends FurniturePresenter{
 		
 		Panel1.add(furniture);
 		Panel1.add(Center);
-		test = furniture.getBounds();
-		System.out.println(test.getWidth());
-		System.out.println(test.getHeight());
+		
+		int width1 = Integer.parseInt(read.nextLine());
+		int height1 = Integer.parseInt(read.nextLine());
+		
 		int x_save = Integer.parseInt(read.nextLine());
 		int y_save = Integer.parseInt(read.nextLine());
 		validate();
 		
-		furniture.setBounds(x_save, y_save,furniture.getWidth(),furniture.getHeight()); 
+		furniture.setBounds(x_save, y_save,width1,height1); 
 		repaint();
 		
 		test = furniture.getBounds();
@@ -336,10 +341,7 @@ public class furpic extends FurniturePresenter{
 		i = Integer.parseInt(index1);
 		i++;
 		index1 = String.valueOf(i);
-		
-		}
-		
-		addMouseMotionListener(new MouseMotionListener() {
+		furniture.addMouseMotionListener(new MouseMotionListener() {
 			
 			@Override
 			public void mouseMoved(MouseEvent e) {
@@ -350,11 +352,84 @@ public class furpic extends FurniturePresenter{
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+				x = e.getXOnScreen();
+				y = e.getYOnScreen();
+				x_cursor = x-200;
+				y_cursor = y-70;
+				furniture.setLocation(x_cursor, y_cursor);	
+				test = furniture.getBounds();
+				tables1.Coordinating(test, furniture.getName());
+				repaint();
 			}
 		});
 		
+		furniture.addMouseListener(new MouseListener() {
 
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				if(deleteflag == true) {
+					
+					tables1.deleteCoordinate(furniture.getName());
+					Panel1.remove(furniture);
+					//i = Integer.parseInt(index1);
+					//i--;
+					//index1 = String.valueOf(i);
+					repaint();
+					deleteflag = false;
+				}
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					flag = tables1.compareCoordinates(test,furniture.getName());
+					for(int i = 0; i < saveC.length;i++) {
+						System.out.println(saveC[i]);
+					}
+					
+					if(flag == true) {
+						furniture.setLocation(200,100);
+						
+						repaint();
+						
+					}
+					}
+					catch(Exception error) {
+						
+					}
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		
+		}
+		
+
+		
+
+	}
+		loadflag = false;
+		
 	}
 		
 	}
