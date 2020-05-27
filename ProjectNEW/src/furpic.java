@@ -33,6 +33,8 @@ public class furpic extends FurniturePresenter{
 	Scanner read;
 	static ShoppingList list;
 	boolean loadflag = true;
+	JLabel tabletext = new JLabel();
+	JLabel chairtext = new JLabel();
 		 
 	
 	public static void main(String[] args) {
@@ -40,7 +42,7 @@ public class furpic extends FurniturePresenter{
 		tables1 = new Coordinates();
 		save = new String[10];
 		list = new ShoppingList();
-		list.add("Table");
+		list.add("TABLE");
 		list.add("Chair");
 		saveC = new Rectangle[10];
 		
@@ -53,7 +55,9 @@ public class furpic extends FurniturePresenter{
 
 	@Override
 	public void Button1Pressed() {
-		list.check("Table");
+		list.check("TABLE");
+		tabletext.setText("Table " + list.display("TABLE"));
+		shoppinglist.add(tabletext);
 		JLabel furniture = new JLabel(new ImageIcon("TABLE.png"));
 		furniture.setName(index1);
 		keypad.add(furniture);
@@ -109,12 +113,12 @@ public class furpic extends FurniturePresenter{
 				// TODO Auto-generated method stub
 				
 				if(deleteflag == true) {
+					list.delete("TABLE");
+					tabletext.setText("Table " + list.display("TABLE"));
+					shoppinglist.add(tabletext);
 					
 					tables1.deleteCoordinate(furniture.getName());
 					Panel1.remove(furniture);
-					//i = Integer.parseInt(index1);
-					//i--;
-					//index1 = String.valueOf(i);
 					repaint();
 					deleteflag = false;
 				}
@@ -161,6 +165,8 @@ public class furpic extends FurniturePresenter{
 	@Override
 	public void Button2Pressed() {
 		list.check("Chair");
+		chairtext.setText("Chair " + list.display("Chair"));
+		shoppinglist.add(chairtext);
 		JLabel furniture = new JLabel(new ImageIcon("CHAIR.png"));
 		keypad.add(furniture);
 		furniture.setName(index1);
@@ -207,7 +213,16 @@ public class furpic extends FurniturePresenter{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+				if(deleteflag == true) {
+					list.delete("Chair");
+					chairtext.setText("Chair " + list.display("Chair"));
+					shoppinglist.add(chairtext);
+					
+					tables1.deleteCoordinate(furniture.getName());
+					Panel1.remove(furniture);
+					repaint();
+					deleteflag = false;
+				}
 			}
 
 			@Override
@@ -302,10 +317,8 @@ public class furpic extends FurniturePresenter{
 	        outputWriter.newLine();
 	        outputWriter.write(Integer.toString(saveC[x].y));
 	        outputWriter.newLine();
-	        
 	    	}
 	      }
-	    
 	    outputWriter.flush();
 	    outputWriter.close();
 	}
@@ -327,6 +340,13 @@ public class furpic extends FurniturePresenter{
 		read =  new Scanner(text);
 		while(read.hasNextLine()) {
 		str = read.nextLine();
+
+		if(str.equals("TABLE")) {
+			list.check("TABLE");
+			tabletext.setText("TABLE " + list.display("TABLE"));
+			shoppinglist.add(tabletext);
+		}
+		
 		JLabel furniture = new JLabel(new ImageIcon( str + ".png"));
 		furniture.setName(index1);
 		

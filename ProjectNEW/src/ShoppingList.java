@@ -41,6 +41,17 @@ public class ShoppingList {
 		}
 		return 0;		
 	}
+	
+	public void delete(String name) {
+		Node temp = head;
+		while(temp != null) {
+			if(name == temp.furniture) {
+				temp.counter--;
+		}
+			temp = temp.next;
+		}
+	}
+	
 public static void main(String[]args) {
 		
 		ShoppingList list = new ShoppingList();
@@ -51,6 +62,7 @@ public static void main(String[]args) {
 		
 		list.check("Table");
 		list.check("Table");
+		list.delete("Table");
 		System.out.println(list.display("Table"));
 }
 }
