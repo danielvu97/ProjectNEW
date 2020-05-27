@@ -30,17 +30,18 @@ public class furpic extends FurniturePresenter{
 	public static Coordinates tables1;
 	static String [] save;
 	String str;
-	static Saver saver;
 	Scanner read;
+	static ShoppingList list;
 	boolean loadflag = true;
 		 
 	
 	public static void main(String[] args) {
 		furpic P = new furpic();
 		tables1 = new Coordinates();
-		saver = new Saver();
 		save = new String[10];
-		
+		list = new ShoppingList();
+		list.add("Table");
+		list.add("Chair");
 		saveC = new Rectangle[10];
 		
 		P.showImage("ROOM_CREATED.png");
@@ -52,6 +53,7 @@ public class furpic extends FurniturePresenter{
 
 	@Override
 	public void Button1Pressed() {
+		list.check("Table");
 		JLabel furniture = new JLabel(new ImageIcon("TABLE.png"));
 		furniture.setName(index1);
 		keypad.add(furniture);
@@ -158,6 +160,7 @@ public class furpic extends FurniturePresenter{
 
 	@Override
 	public void Button2Pressed() {
+		list.check("Chair");
 		JLabel furniture = new JLabel(new ImageIcon("CHAIR.png"));
 		keypad.add(furniture);
 		furniture.setName(index1);

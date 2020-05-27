@@ -21,7 +21,7 @@ public class ShoppingList {
 			
 	}
 	
-	public int check(String name) {
+	public void check(String name) {
 		Node temp = head;
 		while(temp != null) {
 			if(name == temp.furniture) {
@@ -29,16 +29,17 @@ public class ShoppingList {
 		}
 			temp = temp.next;
 		}
-		return temp.counter;
 	}
 	
-	public void display(){
+	public  int display(String name){
 		Node temp = head;
 		while (temp != null){
-			System.out.printf(temp.furniture + " "+ temp.counter);
-			System.out.println();
+			if (temp.furniture == name) {
+			return temp.counter;
+			}
 			temp = temp.next;
-		}		
+		}
+		return 0;		
 	}
 public static void main(String[]args) {
 		
@@ -50,6 +51,6 @@ public static void main(String[]args) {
 		
 		list.check("Table");
 		list.check("Table");
-		list.display();
+		System.out.println(list.display("Table"));
 }
 }
