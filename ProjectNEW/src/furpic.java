@@ -125,6 +125,8 @@ public class furpic extends FurniturePresenter{
 				flag = tables1.compareCoordinates(test,furniture.getName());
 				if(flag == true) {
 					furniture.setLocation(200,100);
+					test = furniture.getBounds();
+					tables1.Coordinating(test,furniture.getName());
 					
 					repaint();
 					
@@ -210,6 +212,8 @@ public class furpic extends FurniturePresenter{
 				flag = tables1.compareCoordinates(test,furniture.getName());
 				if(flag == true) {
 					furniture.setLocation(200,100);
+					test = furniture.getBounds();
+					tables1.Coordinating(test,furniture.getName());
 				}
 					repaint();
 				// TODO Auto-generated method stub
