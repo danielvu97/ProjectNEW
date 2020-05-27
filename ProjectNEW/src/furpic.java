@@ -406,9 +406,12 @@ public class furpic extends FurniturePresenter{
 					
 					tables1.deleteCoordinate(furniture.getName());
 					Panel1.remove(furniture);
+					
 					//i = Integer.parseInt(index1);
 					//i--;
 					//index1 = String.valueOf(i);
+					
+					
 					repaint();
 					deleteflag = false;
 				}
