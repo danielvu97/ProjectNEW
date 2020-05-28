@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 
 public class furpic extends FurniturePresenter{
+	String[] furnitureLoad = new String[30];
+
 	boolean flag = false;
 	int x = 0;
 	int y = 0;
@@ -33,18 +35,29 @@ public class furpic extends FurniturePresenter{
 	Scanner read;
 	static ShoppingList list;
 	boolean loadflag = true;
-	JLabel tabletext = new JLabel();
-	JLabel chairtext = new JLabel();
+	static JLabel [] tabletext = new JLabel[8];
+	int o = 0;
+	
 		 
 	
 	public static void main(String[] args) {
 		furpic P = new furpic();
 		tables1 = new Coordinates();
-		save = new String[10];
+		save = new String[30];
 		list = new ShoppingList();
 		list.add("TABLE");
-		list.add("Chair");
-		saveC = new Rectangle[10];
+		list.add("CHAIR");
+		list.add("COUCH");
+		list.add("TV");
+		list.add("WARDROBE");
+		list.add("BED");
+		list.add("STOVE");
+		list.add("TOILET");
+		saveC = new Rectangle[30];
+		
+		for(int i = 0; i <8 ; i++) {
+			tabletext[i] = new JLabel();
+		}
 		
 		P.showImage("ROOM_CREATED.png");
 		P.setVisible(true);
@@ -56,8 +69,8 @@ public class furpic extends FurniturePresenter{
 	@Override
 	public void Button1Pressed() {
 		list.check("TABLE");
-		tabletext.setText("Table " + list.display("TABLE"));
-		shoppinglist.add(tabletext);
+		tabletext[0].setText("TABLE x" + list.display("TABLE"));
+		shoppinglist.add(tabletext[0]);
 		JLabel furniture = new JLabel(new ImageIcon("TABLE.png"));
 		furniture.setName(index1);
 		keypad.add(furniture);
@@ -74,13 +87,11 @@ public class furpic extends FurniturePresenter{
 				Panel1.add(Center);
 				x_cursor = x-157;
 				y_cursor = y-30;
-				System.out.println(x_cursor + "Xcordinat");
-				System.out.println(y_cursor + "Ycordinat");
+
 				
 				furniture.setLocation(x_cursor, y_cursor);
 				test = furniture.getBounds();
 				tables1.Coordinating(test,furniture.getName());
-				System.out.println(furniture.getName());
 				
 
 				repaint();
@@ -96,7 +107,6 @@ public class furpic extends FurniturePresenter{
 		validate();
 		i = Integer.parseInt(index1);
 		save[i] = "TABLE";
-		System.out.println(i);
 		i++;
 		index1 = String.valueOf(i);
 		
@@ -114,9 +124,8 @@ public class furpic extends FurniturePresenter{
 				
 				if(deleteflag == true) {
 					list.delete("TABLE");
-					tabletext.setText("Table " + list.display("TABLE"));
-					shoppinglist.add(tabletext);
-					
+					tabletext[0].setText("TABLE x" + list.display("TABLE"));
+					shoppinglist.add(tabletext[0]);
 					tables1.deleteCoordinate(furniture.getName());
 					Panel1.remove(furniture);
 					repaint();
@@ -164,9 +173,9 @@ public class furpic extends FurniturePresenter{
 
 	@Override
 	public void Button2Pressed() {
-		list.check("Chair");
-		chairtext.setText("Chair " + list.display("Chair"));
-		shoppinglist.add(chairtext);
+		list.check("CHAIR");
+		tabletext[1].setText("CHAIR x" + list.display("CHAIR"));
+		shoppinglist.add(tabletext[1]);
 		JLabel furniture = new JLabel(new ImageIcon("CHAIR.png"));
 		keypad.add(furniture);
 		furniture.setName(index1);
@@ -197,7 +206,6 @@ public class furpic extends FurniturePresenter{
 		});
 		validate();
 		i = Integer.parseInt(index1);
-		System.out.println(i);
 		save[i] = "CHAIR";
 		i++;
 		index1 = String.valueOf(i);
@@ -214,9 +222,9 @@ public class furpic extends FurniturePresenter{
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
 				if(deleteflag == true) {
-					list.delete("Chair");
-					chairtext.setText("Chair " + list.display("Chair"));
-					shoppinglist.add(chairtext);
+					list.delete("CHAIR");
+					tabletext[1].setText("CHAIR x" + list.display("CHAIR"));
+					shoppinglist.add(tabletext[1]);
 					
 					tables1.deleteCoordinate(furniture.getName());
 					Panel1.remove(furniture);
@@ -262,38 +270,620 @@ public class furpic extends FurniturePresenter{
 
 	@Override
 	public void Button3Pressed() {
-		// TODO Auto-generated method stub
+		list.check("COUCH");
+		tabletext[2].setText("COUCH x" + list.display("COUCH"));
+		shoppinglist.add(tabletext[2]);
+		JLabel furniture = new JLabel(new ImageIcon("COUCH.png"));
+		keypad.add(furniture);
+		furniture.setName(index1);
+		furniture.addMouseMotionListener(new MouseMotionListener() {
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				 x = e.getXOnScreen();
+				 y = e.getYOnScreen();				 
+				keypad.remove(furniture);
+				Panel1.add(furniture);
+				Panel1.add(Center);
+				x_cursor = x-200;
+				y_cursor = y-70;
+				furniture.setLocation(x_cursor, y_cursor);
+				
+				test = furniture.getBounds();
+				tables1.Coordinating(test, furniture.getName());
+				repaint();
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		validate();
+		i = Integer.parseInt(index1);
+		save[i] = "COUCH";
+		i++;
+		index1 = String.valueOf(i);
 		
+		furniture.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				if(deleteflag == true) {
+					list.delete("COUCH");
+					tabletext[2].setText("COUCH x" + list.display("COUCH"));
+					shoppinglist.add(tabletext[2]);
+					
+					tables1.deleteCoordinate(furniture.getName());
+					Panel1.remove(furniture);
+					repaint();
+					deleteflag = false;
+				}
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				try {
+				flag = tables1.compareCoordinates(test,furniture.getName());
+				if(flag == true) {
+					furniture.setLocation(200,100);
+					test = furniture.getBounds();
+					tables1.Coordinating(test,furniture.getName());
+				}
+					repaint();
+				// TODO Auto-generated method stub
+				
+			}
+				catch(Exception error) {
+					}
+				}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
 
 	@Override
 	public void Button4Pressed() {
 		// TODO Auto-generated method stub
+		list.check("TV");
+		tabletext[3].setText("TV x" + list.display("TV"));
+		shoppinglist.add(tabletext[3]);
+		JLabel furniture = new JLabel(new ImageIcon("TV.png"));
+		furniture.setName(index1);
+		keypad.add(furniture);
 		
+		
+		furniture.addMouseMotionListener(new MouseMotionListener() {
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				 x = e.getXOnScreen();
+				 y = e.getYOnScreen();
+				keypad.remove(furniture);
+				Panel1.add(furniture);
+				Panel1.add(Center);
+				x_cursor = x-157;
+				y_cursor = y-30;
+				
+				furniture.setLocation(x_cursor, y_cursor);
+				test = furniture.getBounds();
+				tables1.Coordinating(test,furniture.getName());
+				
+
+				repaint();
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		validate();
+		i = Integer.parseInt(index1);
+		save[i] = "TV";
+		i++;
+		index1 = String.valueOf(i);
+		
+		
+		furniture.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+				if(deleteflag == true) {
+					list.delete("TV");
+					tabletext[0].setText("TV x" + list.display("TV"));
+					shoppinglist.add(tabletext[3]);
+					tables1.deleteCoordinate(furniture.getName());
+					Panel1.remove(furniture);
+					repaint();
+					deleteflag = false;
+				}
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				try {
+				flag = tables1.compareCoordinates(test,furniture.getName());
+				if(flag == true) {
+					furniture.setLocation(200,100);
+					test = furniture.getBounds();
+					tables1.Coordinating(test,furniture.getName());
+					
+					repaint();
+					
+				}
+				}
+				catch(Exception error) {
+					
+				}
+				
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
 
 	@Override
 	public void Button5Pressed() {
 		// TODO Auto-generated method stub
+		list.check("WARDROBE");
+		tabletext[4].setText("WARDROBE x" + list.display("WARDROBE"));
+		shoppinglist.add(tabletext[4]);
+		JLabel furniture = new JLabel(new ImageIcon("WARDROBE.png"));
+		furniture.setName(index1);
+		keypad.add(furniture);
+		
+		
+		furniture.addMouseMotionListener(new MouseMotionListener() {
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				 x = e.getXOnScreen();
+				 y = e.getYOnScreen();
+				keypad.remove(furniture);
+				Panel1.add(furniture);
+				Panel1.add(Center);
+				x_cursor = x-157;
+				y_cursor = y-30;
+				
+				furniture.setLocation(x_cursor, y_cursor);
+				test = furniture.getBounds();
+				tables1.Coordinating(test,furniture.getName());
+				
+
+				repaint();
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		validate();
+		i = Integer.parseInt(index1);
+		save[i] = "WARDROBE";
+		i++;
+		index1 = String.valueOf(i);
+		
+		
+		furniture.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+				if(deleteflag == true) {
+					list.delete("WARDROBE");
+					tabletext[4].setText("WARDROBE x" + list.display("WARDROBE"));
+					shoppinglist.add(tabletext[4]);
+					tables1.deleteCoordinate(furniture.getName());
+					Panel1.remove(furniture);
+					repaint();
+					deleteflag = false;
+				}
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				try {
+				flag = tables1.compareCoordinates(test,furniture.getName());
+				if(flag == true) {
+					furniture.setLocation(200,100);
+					test = furniture.getBounds();
+					tables1.Coordinating(test,furniture.getName());
+					
+					repaint();
+					
+				}
+				}
+				catch(Exception error) {
+					
+				}
+				
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 	}
 
 	@Override
 	public void Button6Pressed() {
 		// TODO Auto-generated method stub
+		list.check("BED");
+		tabletext[5].setText("BED x" + list.display("BED"));
+		shoppinglist.add(tabletext[5]);
+		JLabel furniture = new JLabel(new ImageIcon("BED.png"));
+		furniture.setName(index1);
+		keypad.add(furniture);
+		
+		
+		furniture.addMouseMotionListener(new MouseMotionListener() {
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				 x = e.getXOnScreen();
+				 y = e.getYOnScreen();
+				keypad.remove(furniture);
+				Panel1.add(furniture);
+				Panel1.add(Center);
+				x_cursor = x-157;
+				y_cursor = y-30;
+				
+				furniture.setLocation(x_cursor, y_cursor);
+				test = furniture.getBounds();
+				tables1.Coordinating(test,furniture.getName());
+				
+
+				repaint();
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		validate();
+		i = Integer.parseInt(index1);
+		save[i] = "BED";
+		i++;
+		index1 = String.valueOf(i);
+		
+		
+		furniture.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+				if(deleteflag == true) {
+					list.delete("BED");
+					tabletext[5].setText("BED x" + list.display("BED"));
+					shoppinglist.add(tabletext[5]);
+					tables1.deleteCoordinate(furniture.getName());
+					Panel1.remove(furniture);
+					repaint();
+					deleteflag = false;
+				}
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				try {
+				flag = tables1.compareCoordinates(test,furniture.getName());
+				if(flag == true) {
+					furniture.setLocation(200,100);
+					test = furniture.getBounds();
+					tables1.Coordinating(test,furniture.getName());
+					
+					repaint();
+					
+				}
+				}
+				catch(Exception error) {
+					
+				}
+				
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
 		
 	}
 
 	@Override
 	public void Button7Pressed() {
 		// TODO Auto-generated method stub
+		list.check("STOVE");
+		tabletext[6].setText("STOVE x" + list.display("STOVE"));
+		shoppinglist.add(tabletext[6]);
+		JLabel furniture = new JLabel(new ImageIcon("STOVE.png"));
+		furniture.setName(index1);
+		keypad.add(furniture);
+		
+		
+		furniture.addMouseMotionListener(new MouseMotionListener() {
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				 x = e.getXOnScreen();
+				 y = e.getYOnScreen();
+				keypad.remove(furniture);
+				Panel1.add(furniture);
+				Panel1.add(Center);
+				x_cursor = x-157;
+				y_cursor = y-30;
+				
+				furniture.setLocation(x_cursor, y_cursor);
+				test = furniture.getBounds();
+				tables1.Coordinating(test,furniture.getName());
+				
+
+				repaint();
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		validate();
+		i = Integer.parseInt(index1);
+		save[i] = "STOVE";
+		i++;
+		index1 = String.valueOf(i);
+		
+		
+		furniture.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+				if(deleteflag == true) {
+					list.delete("STOVE");
+					tabletext[6].setText("STOVE x" + list.display("STOVE"));
+					shoppinglist.add(tabletext[6]);
+					tables1.deleteCoordinate(furniture.getName());
+					Panel1.remove(furniture);
+					repaint();
+					deleteflag = false;
+				}
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				try {
+				flag = tables1.compareCoordinates(test,furniture.getName());
+				if(flag == true) {
+					furniture.setLocation(200,100);
+					test = furniture.getBounds();
+					tables1.Coordinating(test,furniture.getName());
+					
+					repaint();
+					
+				}
+				}
+				catch(Exception error) {
+					
+				}
+				
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 	}
 
 	@Override
 	public void Button8Pressed() {
 		// TODO Auto-generated method stub
+		list.check("TOILET");
+		tabletext[7].setText("TOILET x" + list.display("TOILET"));
+		shoppinglist.add(tabletext[7]);
+		JLabel furniture = new JLabel(new ImageIcon("TOILET.png"));
+		furniture.setName(index1);
+		keypad.add(furniture);
 		
+		
+		furniture.addMouseMotionListener(new MouseMotionListener() {
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				 x = e.getXOnScreen();
+				 y = e.getYOnScreen();
+				keypad.remove(furniture);
+				Panel1.add(furniture);
+				Panel1.add(Center);
+				x_cursor = x-157;
+				y_cursor = y-30;
+				
+				furniture.setLocation(x_cursor, y_cursor);
+				test = furniture.getBounds();
+				tables1.Coordinating(test,furniture.getName());
+				
+
+				repaint();
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		validate();
+		i = Integer.parseInt(index1);
+		save[i] = "TOILET";
+		i++;
+		index1 = String.valueOf(i);
+		
+		
+		furniture.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+				if(deleteflag == true) {
+					list.delete("TOILET");
+					tabletext[7].setText("TOILET x" + list.display("TOILET"));
+					shoppinglist.add(tabletext[7]);
+					tables1.deleteCoordinate(furniture.getName());
+					Panel1.remove(furniture);
+					repaint();
+					deleteflag = false;
+				}
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				try {
+				flag = tables1.compareCoordinates(test,furniture.getName());
+				if(flag == true) {
+					furniture.setLocation(200,100);
+					test = furniture.getBounds();
+					tables1.Coordinating(test,furniture.getName());
+					
+					repaint();
+					
+				}
+				}
+				catch(Exception error) {
+					
+				}
+				
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
 
 	@SuppressWarnings("resource")
@@ -304,7 +894,6 @@ public class furpic extends FurniturePresenter{
 		saveC = tables1.coordinateValues();
 		
 		outputWriter = new BufferedWriter(new FileWriter(s));
-	    System.out.print(i);
 	    for (int x = 0; x <i; x++) {
 	    	if(saveC[x] != null) {
 	        outputWriter.write(save[x]);
@@ -343,13 +932,52 @@ public class furpic extends FurniturePresenter{
 
 		if(str.equals("TABLE")) {
 			list.check("TABLE");
-			tabletext.setText("TABLE " + list.display("TABLE"));
-			shoppinglist.add(tabletext);
+			tabletext[0].setText("TABLE x" + list.display("TABLE"));
+			shoppinglist.add(tabletext[0]);
+		}
+		
+		if(str.equals("CHAIR")) {
+			list.check("CHAIR");
+			tabletext[1].setText("CHAIR x" + list.display("CHAIR"));
+			shoppinglist.add(tabletext[1]);
+		}
+		if(str.equals("COUCH")) {
+			list.check("COUCH");
+			tabletext[2].setText("COUCH x" + list.display("COUCH"));
+			shoppinglist.add(tabletext[2]);
+		}
+		if(str.equals("TV")) {
+			list.check("TV");
+			tabletext[3].setText("TV x" + list.display("TV"));
+			shoppinglist.add(tabletext[3]);
+		}
+		if(str.equals("WARDROBE")) {
+			list.check("WARDROBE");
+			tabletext[4].setText("WARDROBE x" + list.display("WARDROBE"));
+			shoppinglist.add(tabletext[4]);
+		}
+		if(str.equals("BED")) {
+			list.check("BED");
+			tabletext[5].setText("BED x" + list.display("BED"));
+			shoppinglist.add(tabletext[5]);
+		}
+		if(str.equals("STOVE")) {
+			list.check("STOVE");
+			tabletext[6].setText("STOVE x" + list.display("STOVE"));
+			shoppinglist.add(tabletext[6]);
+		}
+		if(str.equals("TOILET")) {
+			list.check("TOILET");
+			tabletext[7].setText("TOILET x" + list.display("TOILET"));
+			shoppinglist.add(tabletext[7]);
 		}
 		
 		JLabel furniture = new JLabel(new ImageIcon( str + ".png"));
 		furniture.setName(index1);
 		
+		o = Integer.parseInt(furniture.getName());;
+		
+		furnitureLoad[o] = str;
 		Panel1.add(furniture);
 		Panel1.add(Center);
 		
@@ -406,10 +1034,48 @@ public class furpic extends FurniturePresenter{
 					
 					tables1.deleteCoordinate(furniture.getName());
 					Panel1.remove(furniture);
+					o = Integer.parseInt(furniture.getName());
 					
-					//i = Integer.parseInt(index1);
-					//i--;
-					//index1 = String.valueOf(i);
+					if(furnitureLoad[o].equals("TABLE")) {
+					list.delete("TABLE");
+					tabletext[0].setText("TABLE x" + list.display("TABLE"));
+					shoppinglist.add(tabletext[0]);
+					}
+					if(furnitureLoad[o].equals("CHAIR")) {
+					list.delete("CHAIR");
+					tabletext[1].setText("CHAIR x" + list.display("CHAIR"));
+					shoppinglist.add(tabletext[1]);
+					}
+					if(furnitureLoad[o].equals("COUCH")) {
+					list.delete("COUCH");
+					tabletext[2].setText("COUCH x" + list.display("COUCH"));
+					shoppinglist.add(tabletext[2]);
+					}
+					if(furnitureLoad[o].equals("TV")) {
+					list.delete("TV");
+					tabletext[3].setText("TV x" + list.display("TV"));
+					shoppinglist.add(tabletext[3]);
+					}
+					if(furnitureLoad[o].equals("WARDROBE")) {
+					list.delete("WARDROBE");
+					tabletext[4].setText("WARDROBE x" + list.display("WARDROBE"));
+					shoppinglist.add(tabletext[4]);
+					}
+					if(furnitureLoad[o].equals("BED")) {
+					list.delete("BED");
+					tabletext[5].setText("BED x" + list.display("BED"));
+					shoppinglist.add(tabletext[5]);
+					}
+					if(furnitureLoad[o].equals("STOVE")) {
+					list.delete("STOVE");
+					tabletext[6].setText("STOVE x" + list.display("STOVE"));
+					shoppinglist.add(tabletext[6]);
+					}
+					if(furnitureLoad[o].equals("TOILET")) {
+					list.delete("TOILET");
+					tabletext[7].setText("TOILET x" + list.display("TOILET"));
+					shoppinglist.add(tabletext[7]);
+					}
 					
 					
 					repaint();
@@ -422,9 +1088,6 @@ public class furpic extends FurniturePresenter{
 				// TODO Auto-generated method stub
 				try {
 					flag = tables1.compareCoordinates(test,furniture.getName());
-					for(int i = 0; i < saveC.length;i++) {
-						System.out.println(saveC[i]);
-					}
 					
 					if(flag == true) {
 						furniture.setLocation(200,100);

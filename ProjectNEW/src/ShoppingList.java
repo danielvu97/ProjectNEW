@@ -44,6 +44,7 @@ public class ShoppingList {
 	
 	public void delete(String name) {
 		Node temp = head;
+		System.out.println("lol");
 		while(temp != null) {
 			if(name == temp.furniture) {
 				temp.counter--;

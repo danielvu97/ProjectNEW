@@ -3,7 +3,7 @@ import java.awt.geom.Area;
 
 public class Coordinates extends furpic {
 	
-	Rectangle [] save = new Rectangle[10];
+	Rectangle [] save = new Rectangle[30];
 	Rectangle [] obstacle = new Rectangle[12];
 	
 	public Coordinates() {
