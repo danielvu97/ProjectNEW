@@ -134,24 +134,24 @@ public class furpic extends FurniturePresenter{
 				// TODO Auto-generated method stub
 				
 				if(deleteflag == true) {
-					list.delete("TABLE");
-					tabletext[0].setText("TABLE x" + list.display("TABLE"));
-					shoppinglist.add(tabletext[0]);
-					tables1.deleteCoordinate(furniture.getName());
-					Panel1.remove(furniture);
-					repaint();
-					deleteflag = false;
+					list.delete("TABLE"); //Removes counter for table on the list by 1
+					tabletext[0].setText("TABLE x" + list.display("TABLE")); //Updates the text in shoppinglist
+					shoppinglist.add(tabletext[0]); //Updates the shoppinglist framework
+					tables1.deleteCoordinate(furniture.getName()); //Removes the cordinate for the furniture
+					Panel1.remove(furniture); //Removes the furniture from the framework
+					repaint(); //Changes so the user can see that it gets removed
+					deleteflag = false; //resets the delete button
 				}
 				
 			}
 
 			@Override
-			public void mouseReleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) { //Checks if two furniture collides or intersects
 				// TODO Auto-generated method stub
 				try {
 				flag = tables1.compareCoordinates(test,furniture.getName());
 				if(flag == true) {
-					furniture.setLocation(200,100);
+					furniture.setLocation(200,100); //moves the furniture to specific location if it collides.
 					test = furniture.getBounds();
 					tables1.Coordinating(test,furniture.getName());
 					
@@ -899,23 +899,23 @@ public class furpic extends FurniturePresenter{
 
 	@SuppressWarnings("resource")
 	@Override
-	public void ButtonSave(String s) throws IOException {
+	public void ButtonSave(String s) throws IOException { //Save Button
 		// TODO Auto-generated method stub
 		BufferedWriter outputWriter = null;
 		saveC = tables1.coordinateValues();
 		
-		outputWriter = new BufferedWriter(new FileWriter(s));
+		outputWriter = new BufferedWriter(new FileWriter(s)); //Creates a textfile
 	    for (int x = 0; x <i; x++) {
 	    	if(saveC[x] != null) {
-	        outputWriter.write(save[x]);
+	        outputWriter.write(save[x]); //Saves the name of the furniture for example "TABLE"
 	        outputWriter.newLine();
-	        outputWriter.write(Integer.toString(saveC[x].width));
+	        outputWriter.write(Integer.toString(saveC[x].width)); //Saves the width
 	        outputWriter.newLine();
-	        outputWriter.write(Integer.toString(saveC[x].height));
+	        outputWriter.write(Integer.toString(saveC[x].height)); //Saves the height
 	        outputWriter.newLine();
-	        outputWriter.write(Integer.toString(saveC[x].x));
+	        outputWriter.write(Integer.toString(saveC[x].x)); //Saves the X-cordination of its position
 	        outputWriter.newLine();
-	        outputWriter.write(Integer.toString(saveC[x].y));
+	        outputWriter.write(Integer.toString(saveC[x].y)); //Saves the Y-cordination of its position
 	        outputWriter.newLine();
 	    	}
 	      }
@@ -924,7 +924,7 @@ public class furpic extends FurniturePresenter{
 	}
 
 	@Override
-	public void ButtonDelete() {
+	public void ButtonDelete() { //actives delete flag when delete button is pressed.
 		// TODO Auto-generated method stub
 			deleteflag = true;
 			
