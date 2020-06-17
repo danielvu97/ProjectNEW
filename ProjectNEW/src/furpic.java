@@ -15,10 +15,12 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 public class furpic extends FurniturePresenter{
 	String[] furnitureLoad = new String[30];
 
+	//Necessary global variables
 	boolean flag = false;
 	int x = 0;
 	int y = 0;
@@ -38,13 +40,11 @@ public class furpic extends FurniturePresenter{
 	static JLabel [] tabletext = new JLabel[8];
 	int o = 0;
 	
-		 
-	
 	public static void main(String[] args) {
-		furpic P = new furpic();
-		tables1 = new Coordinates();
-		save = new String[30];
-		list = new ShoppingList();
+		furpic P = new furpic(); //initialise the program
+		tables1 = new Coordinates(); //initialise the obstacles
+		save = new String[30]; 
+		list = new ShoppingList(); //initialise the shoppinglist and adds the furnitures
 		list.add("TABLE");
 		list.add("CHAIR");
 		list.add("COUCH");
@@ -59,42 +59,46 @@ public class furpic extends FurniturePresenter{
 			tabletext[i] = new JLabel();
 		}
 		
-		P.showImage("ROOM_CREATED.png");
+		P.showImage("ROOM_CREATED.png"); //initialise the wallpaper
 		P.setVisible(true);
 		P.pack();
 	}  
 	
 	
-
+	//Method for when button 1 is pressed
 	@Override
 	public void Button1Pressed() {
-		list.check("TABLE");
-		tabletext[0].setText("TABLE x" + list.display("TABLE"));
-		shoppinglist.add(tabletext[0]);
-		JLabel furniture = new JLabel(new ImageIcon("TABLE.png"));
-		furniture.setName(index1);
+		assert i < 0 : " checks if it is not below 0";
+		assert Panel1 != null:"Checks if there is a room";
+		assert list != null: "add furniture to count in ShoppingList";
+		list.check("TABLE"); //Increase the counter for table in shoppinglist
+		tabletext[0].setText("TABLE x" + list.display("TABLE")); //Changes what will be written in the shoppinglist
+		shoppinglist.add(tabletext[0]);	//Updates the framework for shoppinglist
+		JLabel furniture = new JLabel(new ImageIcon("TABLE.png")); //Creates a JLabel of table
+		furniture.setName(index1); //Gives the furniture a number as its name.
 		keypad.add(furniture);
 		
-		
+		//adds a MouseMotionListener
 		furniture.addMouseMotionListener(new MouseMotionListener() {
 
 			@Override
-			public void mouseDragged(MouseEvent e) {
+			public void mouseDragged(MouseEvent e) { //Enable us to move the grabbed furniture
 				 x = e.getXOnScreen();
 				 y = e.getYOnScreen();
-				keypad.remove(furniture);
-				Panel1.add(furniture);
-				Panel1.add(Center);
-				x_cursor = x-157;
+				keypad.remove(furniture); //Removes the furniture from keypad so it doesn't reset when another furniture spawns
+				
+				Panel1.add(furniture); //Adds the furniture to Panel1 instead.
+				Panel1.add(Center); //Adds panel1 to center
+				x_cursor = x-157; //centers the furniture around the mouse
 				y_cursor = y-30;
-
+				System.out.println("Reference " + index1); //prints out the name of the furniture
 				
-				furniture.setLocation(x_cursor, y_cursor);
-				test = furniture.getBounds();
-				tables1.Coordinating(test,furniture.getName());
+				furniture.setLocation(x_cursor, y_cursor); //updates locations so the furniture follows the mouse
+				test = furniture.getBounds(); //get funiture bounds
+				tables1.Coordinating(test,furniture.getName()); //save the furniture position in its corresponding position as the name.
 				
 
-				repaint();
+				repaint(); //repaints the moving furniture so it visually possible to see how it follows the mouse.
 			}
 
 			@Override
@@ -104,12 +108,14 @@ public class furpic extends FurniturePresenter{
 			}
 			
 		});
-		validate();
-		i = Integer.parseInt(index1);
-		save[i] = "TABLE";
-		i++;
-		index1 = String.valueOf(i);
+		validate(); //Part of repainting the furniture.
+		i = Integer.parseInt(index1); //Converts furniture name to i
 		
+		assert i >= 0  : "Error"; //assertion
+		
+		save[i] = "TABLE"; //Saves a table to the saving arraylist which will be used for creating the textfile to save furnitures.
+		i++; //increases the number of i
+		index1 = String.valueOf(i); //gives the new string number/name the index of i
 		
 		furniture.addMouseListener(new MouseListener() {
 
@@ -119,7 +125,7 @@ public class furpic extends FurniturePresenter{
 			}
 
 			@Override
-			public void mousePressed(MouseEvent e) {
+			public void mousePressed(MouseEvent e) { //Deletes the furniture if mouse is pressed.
 				// TODO Auto-generated method stub
 				
 				if(deleteflag == true) {
@@ -191,7 +197,7 @@ public class furpic extends FurniturePresenter{
 				x_cursor = x-200;
 				y_cursor = y-70;
 				furniture.setLocation(x_cursor, y_cursor);
-				
+				System.out.println("Reference " + index1);
 				test = furniture.getBounds();
 				tables1.Coordinating(test, furniture.getName());
 				repaint();
@@ -288,7 +294,7 @@ public class furpic extends FurniturePresenter{
 				x_cursor = x-200;
 				y_cursor = y-70;
 				furniture.setLocation(x_cursor, y_cursor);
-				
+				System.out.println("Reference " + index1);
 				test = furniture.getBounds();
 				tables1.Coordinating(test, furniture.getName());
 				repaint();
@@ -1127,4 +1133,3 @@ public class furpic extends FurniturePresenter{
 	}
 		
 	}
-

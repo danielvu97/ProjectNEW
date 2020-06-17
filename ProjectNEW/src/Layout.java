@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -13,12 +14,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.border.Border;
 
 public abstract class Layout extends JFrame implements ActionListener {
+	/*
+	 * This class are resposible to create the frontend/framework. Structuring what the user will see.
+	 */
 
+	//Creating necessary JPanels and buttons for the framework.
 	JComponent Center = createFurnitureComponent();
 	JPanel Panel1 = new JPanel();
-	JPanel keypad = new JPanel();
 	JPanel savepad = new JPanel();
 	JButton b1 = new JButton("Table");
 	JButton b2 = new JButton("Chair");
@@ -28,13 +34,14 @@ public abstract class Layout extends JFrame implements ActionListener {
 	JButton b6 = new JButton("Bed");
 	JButton b7 = new JButton("Stove");
 	JButton b8 = new JButton("Toilet");
-	
+	JPanel keypad = new JPanel();
 	JButton save = new JButton("Save");
 	JButton delete = new JButton("Delete");
 	JButton load = new JButton("Load");
-	
+
 	JPanel shoppinglist = new JPanel();
 	
+	//A method which checks if a button is pressed.
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == b1) {
 			Button1Pressed();
@@ -86,9 +93,11 @@ public abstract class Layout extends JFrame implements ActionListener {
 
 public Layout(){
 	
-	keypad.setLayout(new BoxLayout(keypad, BoxLayout.Y_AXIS));
-	
-	Dimension d = b5.getMaximumSize();
+	keypad.setLayout(new BoxLayout(keypad, BoxLayout.Y_AXIS)); //Structures so the buttons will show in vertical order.
+	String title = "Keypad & furnitures"; //Creates a title
+	Border border = BorderFactory.createTitledBorder(title);
+	keypad.setBorder(border);
+	Dimension d = b5.getMaximumSize(); //Makes all keypad buttons have the same size.
 	b1.setMaximumSize(d);
 	b2.setMaximumSize(d);
 	b3.setMaximumSize(d);
@@ -98,7 +107,7 @@ public Layout(){
 	b7.setMaximumSize(d);
 	b8.setMaximumSize(d);
 	
-	
+	//Adding the buttons to the keypad panel.
 	keypad.add(b1);
 	keypad.add(b2);
 	keypad.add(b3);	
@@ -108,29 +117,38 @@ public Layout(){
 	keypad.add(b7);
 	keypad.add(b8);
 	
+	//Adding the buttons for the save pad
+	String title1= "";
+	Border border1 = BorderFactory.createTitledBorder(title1);
+	savepad.setBorder(border1);
 	savepad.add(save);
 	savepad.add(delete);
 	savepad.add(load);
 	
+	//Structuring the panel
 	Panel1.setLayout(new BorderLayout());
 	Panel1.add(Center,BorderLayout.CENTER);
-	
 	setLayout(new BorderLayout());
-	add(Panel1, BorderLayout.CENTER);
-	add(keypad,BorderLayout.WEST);
-	add(savepad,BorderLayout.SOUTH);
+	add(Panel1, BorderLayout.CENTER); //Wallpaper is shown in center
+	add(keypad,BorderLayout.WEST); //Keypad is shown to right
+	add(savepad,BorderLayout.SOUTH); //Savepad is shown below
 	
+	//Creating the framework for shoppinglist.
 	JLabel text = new JLabel();
     text.setText("----------SHOPPING LIST---------");
+	String title2= "";
+	Border border2 = BorderFactory.createTitledBorder(title2);
+	shoppinglist.setBorder(border2);
     shoppinglist.add(text);
-    shoppinglist.add(Box.createRigidArea(new Dimension(0,30)));
-    shoppinglist.setLayout(new BoxLayout(shoppinglist, BoxLayout.Y_AXIS));
+    shoppinglist.add(Box.createRigidArea(new Dimension(0,30))); //Creates space between the title and the displayed furnitures.
+    shoppinglist.setLayout(new BoxLayout(shoppinglist, BoxLayout.Y_AXIS)); //text will be displayed vertically.
     shoppinglist.setBackground(Color.LIGHT_GRAY);
-    add(shoppinglist,BorderLayout.EAST);
+    add(shoppinglist,BorderLayout.EAST); //Shoppinglist is shown to the right
 	
 	keypad.setPreferredSize(new Dimension(150, 400));
 	Panel1.setPreferredSize(new Dimension(903, 500));
 	
+	//Adding actionListener for the buttons
 	b1.addActionListener(this);
 	b2.addActionListener(this);
 	b3.addActionListener(this);
@@ -146,6 +164,7 @@ public Layout(){
 	
 }
 
+//Adding the abstract method for the buttons
 public abstract void Button1Pressed();
 public abstract void Button2Pressed();
 public abstract void Button3Pressed();

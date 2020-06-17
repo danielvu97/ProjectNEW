@@ -1,11 +1,12 @@
 import java.awt.Rectangle;
 import java.awt.geom.Area;
 
-public class Coordinates extends furpic {
+public class Coordinates extends furpic{
 	
-	Rectangle [] save = new Rectangle[30];
-	Rectangle [] obstacle = new Rectangle[12];
+	Rectangle [] save = new Rectangle[30]; //Creates an arraylist
+	Rectangle [] obstacle = new Rectangle[12]; //creates an obstaclelist
 	
+	//Creates obstacles for the room. walls, windows and doors
 	public Coordinates() {
 		i = 0;
 		for(int l = 0; l<12; l++) {
@@ -26,39 +27,43 @@ public class Coordinates extends furpic {
 		obstacle[11].setBounds(515, 444, 50, 45); //Bottom House wall
 	}
 	
+	//Updates the position of the selected furniture
 	public void Coordinating(Rectangle A, String Name) {
-		i = Integer.parseInt(Name);
-		save[i] = A;
+		i = Integer.parseInt(Name); //Takes input and convert it into a integer.
+		save[i] = A; //saves the position of the furniture in the arraylist corresponding to its name.
 		
 	}
 	
-	
+	//Checks if the selected furniture intersects with other furnitures. 
 	public boolean compareCoordinates(Rectangle B, String Namn) {
 		i = Integer.parseInt(Namn);
 		
-		for(int k=0; k<obstacle.length; k++) {
-		if(obstacle[k].intersects(B) && obstacle[k] != null) {
-			return true;
+		//Checks if the furniture are intersecting with the house obstacles.
+		for(int k=0; k<obstacle.length; k++) { //Goes through list
+		if(obstacle[k].intersects(B) && obstacle[k] != null) { //Checks intersect
+			return true; //true = the furnitures are intersecting
 		}
 		}
 		
-		for(int j=0; j<10; j++) {
+		//Checks if the furniture are intersecting with other placed furnitures.
+		for(int j=0; j<save.length; j++) { //Goes through list
 			if(i != j && save[j] != null) {
-				if(save[j].intersects(B)) {
-				return true;
+				if(save[j].intersects(B)) { //Checks intersect
+				return true; //true = the furnitures are intersecting
 				}
 			}
 		}
-		return false;
+		return false; //false = the furnitures are not intersecting
 	}
 	
 	
-	
+	//A method which removes the furniture and its position in the array.
 	public void deleteCoordinate(String Name) {
 		i = Integer.parseInt(Name);
 		save[i] = null;
 	}
 	
+	//A method which returns the saved array. Used for savebutton.
 	public Rectangle [] coordinateValues() {
 		return save;
 		

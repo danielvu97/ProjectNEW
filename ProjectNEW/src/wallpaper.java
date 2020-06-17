@@ -9,8 +9,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class wallpaper extends JPanel {
-
+/*
+ * Takes a picture and converts it into a bufferedImage and paints it.
+ */
 	private BufferedImage image ;
+	
 	public void Picture(String filename) {
 
 		try {

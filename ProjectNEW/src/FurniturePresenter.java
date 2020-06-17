@@ -1,6 +1,9 @@
 import javax.swing.JComponent;
 
 public abstract class FurniturePresenter extends Layout  {
+	/*
+	 * Methods for creating the wallpaper.
+	 */
 	private wallpaper pic;
 	
 	public FurniturePresenter(){
