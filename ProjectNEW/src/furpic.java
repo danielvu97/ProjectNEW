@@ -133,7 +133,7 @@ public class furpic extends FurniturePresenter{
 			public void mousePressed(MouseEvent e) { //Deletes the furniture if mouse is pressed.
 				// TODO Auto-generated method stub
 				
-				if(deleteflag == true) {
+				if(deleteflag == true) { //if delete flag is activated.
 					list.delete("TABLE"); //Removes counter for table on the list by 1
 					tabletext[0].setText("TABLE x" + list.display("TABLE")); //Updates the text in shoppinglist
 					shoppinglist.add(tabletext[0]); //Updates the shoppinglist framework
@@ -153,7 +153,7 @@ public class furpic extends FurniturePresenter{
 				if(flag == true) {
 					furniture.setLocation(200,100); //moves the furniture to specific location if it collides.
 					test = furniture.getBounds();
-					tables1.Coordinating(test,furniture.getName());
+					tables1.Coordinating(test,furniture.getName()); //Updates the saving position list
 					
 					repaint();
 					
@@ -181,6 +181,18 @@ public class furpic extends FurniturePresenter{
 		});
 		
 	}
+	
+	/*-----------------------------------------------------------------------------------------
+	 * 
+	 * 
+	 * 
+	 * The same method from above is applied in all the other furniture buttons
+	 * Please check Button1 to understand how Button2 -> Button8 works!
+	 * 
+	 * 
+	 * 
+	 * -----------------------------------------------------------------------------------------
+	 */
 
 	@Override
 	public void Button2Pressed() {
@@ -899,14 +911,14 @@ public class furpic extends FurniturePresenter{
 
 	@SuppressWarnings("resource")
 	@Override
-	public void ButtonSave(String s) throws IOException { //Save Button
+	public void ButtonSave(String s) throws IOException { //Initialize save button
 		// TODO Auto-generated method stub
 		BufferedWriter outputWriter = null;
-		saveC = tables1.coordinateValues();
+		saveC = tables1.coordinateValues(); //Reads all the saved coordinates
 		
 		outputWriter = new BufferedWriter(new FileWriter(s)); //Creates a textfile
 	    for (int x = 0; x <i; x++) {
-	    	if(saveC[x] != null) {
+	    	if(saveC[x] != null) { //Goes through the coordinate/saving list
 	        outputWriter.write(save[x]); //Saves the name of the furniture for example "TABLE"
 	        outputWriter.newLine();
 	        outputWriter.write(Integer.toString(saveC[x].width)); //Saves the width
@@ -924,22 +936,26 @@ public class furpic extends FurniturePresenter{
 	}
 
 	@Override
-	public void ButtonDelete() { //actives delete flag when delete button is pressed.
+	public void ButtonDelete() { //actives the delete flag when delete button is pressed.
 		// TODO Auto-generated method stub
-			deleteflag = true;
+			deleteflag = true; //The user is only able to delete one furniture at a time.
 			
 			
 	}
 
 	@Override
-	public void ButtonLoad(String s) throws IOException {
+	public void ButtonLoad(String s) throws IOException { //Initilialize LoadButton
 		// TODO Auto-generated method stub
-		if(loadflag == true) {
-		saveC = tables1.coordinateValues();
+		if(loadflag == true) { //loadflag is true by default so this enables us to only load once!
+		saveC = tables1.coordinateValues(); //gets all the coordinates
 		File text = new File(s); 
-		read =  new Scanner(text);
-		while(read.hasNextLine()) {
-		str = read.nextLine();
+		read =  new Scanner(text); 
+		while(read.hasNextLine()) { //Goes through the saved textfile
+		str = read.nextLine(); //Goes through line by line
+		
+		/*/
+		 * Checks what's written on the textfile and creates the corresponding furniture
+		 */
 
 		if(str.equals("TABLE")) {
 			list.check("TABLE");
@@ -983,27 +999,27 @@ public class furpic extends FurniturePresenter{
 			shoppinglist.add(tabletext[7]);
 		}
 		
-		JLabel furniture = new JLabel(new ImageIcon( str + ".png"));
-		furniture.setName(index1);
+		JLabel furniture = new JLabel(new ImageIcon( str + ".png")); //Create the furniture
+		furniture.setName(index1); //Gives it a string number name
 		
-		o = Integer.parseInt(furniture.getName());;
+		o = Integer.parseInt(furniture.getName());
 		
-		furnitureLoad[o] = str;
+		furnitureLoad[o] = str; //Saves what kind of furniture it is
 		Panel1.add(furniture);
 		Panel1.add(Center);
 		
-		int width1 = Integer.parseInt(read.nextLine());
-		int height1 = Integer.parseInt(read.nextLine());
+		int width1 = Integer.parseInt(read.nextLine()); //reads width from textfile
+		int height1 = Integer.parseInt(read.nextLine()); //read height from textfile
 		
-		int x_save = Integer.parseInt(read.nextLine());
-		int y_save = Integer.parseInt(read.nextLine());
+		int x_save = Integer.parseInt(read.nextLine()); //read x position
+		int y_save = Integer.parseInt(read.nextLine()); //read y position
 		validate();
 		
-		furniture.setBounds(x_save, y_save,width1,height1); 
+		furniture.setBounds(x_save, y_save,width1,height1);  //draws the loaded furniture in its saved position from textfile.
 		repaint();
 		
-		test = furniture.getBounds();
-		tables1.Coordinating(test, furniture.getName());
+		test = furniture.getBounds(); 
+		tables1.Coordinating(test, furniture.getName()); //save the furniture in saving coordinate list
 		
 		i = Integer.parseInt(index1);
 		i++;
@@ -1017,15 +1033,15 @@ public class furpic extends FurniturePresenter{
 			}
 			
 			@Override
-			public void mouseDragged(MouseEvent e) {
+			public void mouseDragged(MouseEvent e) { //ability to move the loaded furniture.
 				// TODO Auto-generated method stub
 				x = e.getXOnScreen();
 				y = e.getYOnScreen();
 				x_cursor = x-200;
 				y_cursor = y-70;
-				furniture.setLocation(x_cursor, y_cursor);	
+				furniture.setLocation(x_cursor, y_cursor);	//moves the furniture according to the mouse
 				test = furniture.getBounds();
-				tables1.Coordinating(test, furniture.getName());
+				tables1.Coordinating(test, furniture.getName()); //saves the coordinate 
 				repaint();
 			}
 		});
@@ -1047,11 +1063,20 @@ public class furpic extends FurniturePresenter{
 					Panel1.remove(furniture);
 					o = Integer.parseInt(furniture.getName());
 					
+					/*
+					 * If a button loaded furniture gets deleted, the shoppinglist will get updated
+					 */
+					
 					if(furnitureLoad[o].equals("TABLE")) {
-					list.delete("TABLE");
-					tabletext[0].setText("TABLE x" + list.display("TABLE"));
-					shoppinglist.add(tabletext[0]);
+					list.delete("TABLE"); //decrement one table from shoppinglist
+					tabletext[0].setText("TABLE x" + list.display("TABLE")); //updates the text
+					shoppinglist.add(tabletext[0]); //update the framework
 					}
+					
+					/*
+					 * Same comment is applied below if statements.
+					 */
+					
 					if(furnitureLoad[o].equals("CHAIR")) {
 					list.delete("CHAIR");
 					tabletext[1].setText("CHAIR x" + list.display("CHAIR"));
@@ -1090,7 +1115,7 @@ public class furpic extends FurniturePresenter{
 					
 					
 					repaint();
-					deleteflag = false;
+					deleteflag = false; //The user is only able to delete one furniture at a time.
 				}
 			}
 
@@ -1098,10 +1123,10 @@ public class furpic extends FurniturePresenter{
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					flag = tables1.compareCoordinates(test,furniture.getName());
+					flag = tables1.compareCoordinates(test,furniture.getName()); //checks if two funritures intersects
 					
 					if(flag == true) {
-						furniture.setLocation(200,100);
+						furniture.setLocation(200,100); //set this specific location if it does intersect.
 						
 						repaint();
 						
@@ -1133,7 +1158,7 @@ public class furpic extends FurniturePresenter{
 		
 
 	}
-		loadflag = false;
+		loadflag = false; //Only able to load once when the program is running.
 		
 	}
 		

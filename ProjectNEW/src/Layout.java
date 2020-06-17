@@ -145,7 +145,7 @@ public Layout(){
     shoppinglist.setBackground(Color.LIGHT_GRAY);
     add(shoppinglist,BorderLayout.EAST); //Shoppinglist is shown to the right
 	
-	keypad.setPreferredSize(new Dimension(150, 400));
+	keypad.setPreferredSize(new Dimension(150, 400)); //set specific size for panel
 	Panel1.setPreferredSize(new Dimension(903, 500));
 	
 	//Adding actionListener for the buttons

@@ -15,6 +15,12 @@ public class ShoppingList {
 	ShoppingList(){
 		this.head = null;
 	};
+	
+	/**
+	 * @param Add a the name of the furniture to list
+	 * @precondition temp == null
+	 * @postcondition head != null
+	 */
 
 	//A method which adds a Node to the list
 	public void add(String name) {
