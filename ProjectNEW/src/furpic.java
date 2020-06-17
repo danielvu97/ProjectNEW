@@ -19,6 +19,12 @@ import javax.swing.JScrollPane;
 
 public class furpic extends FurniturePresenter{
 	String[] furnitureLoad = new String[30];
+	
+	/*
+	 * Author: Daniel Vu & Abdulahi Farah
+	 * 
+	 * This class is responsible for handling all the functionalities and are the backbone/back end of the code. 
+	 */
 
 	//Necessary global variables
 	boolean flag = false;

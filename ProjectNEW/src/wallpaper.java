@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 
 public class wallpaper extends JPanel {
 /*
+ * Author: Daniel Vu & Abdulahi Farah
+ * 
  * Takes a picture and converts it into a bufferedImage and paints it.
  */
 	private BufferedImage image ;

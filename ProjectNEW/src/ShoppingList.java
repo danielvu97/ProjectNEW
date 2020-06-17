@@ -1,5 +1,9 @@
 public class ShoppingList {
 	
+	/*
+	 * Author: Daniel Vu & Abdulahi Farah
+	 */
+	
 	//A LinkedList method which saves the furnitures in nodes
 	
 	//Creates the Node containing data.

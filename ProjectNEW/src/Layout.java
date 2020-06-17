@@ -19,6 +19,8 @@ import javax.swing.border.Border;
 
 public abstract class Layout extends JFrame implements ActionListener {
 	/*
+	 * Author: Daniel Vu & Abdulahi Farah
+	 * 
 	 * This class are resposible to create the frontend/framework. Structuring what the user will see.
 	 */
 
