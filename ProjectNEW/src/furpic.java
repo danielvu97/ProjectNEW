@@ -64,6 +64,11 @@ public class furpic extends FurniturePresenter{
 		P.pack();
 	}  
 	
+	/**
+	 * @param When button1 aka. TABLE is pressed
+	 * @precondition int i < 0 && Panel1 != null;
+	 * @postcondition int i > 0;
+	 */
 	
 	//Method for when button 1 is pressed
 	@Override
